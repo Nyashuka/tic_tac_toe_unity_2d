@@ -355,7 +355,7 @@ MonoBehaviour:
   size: 9
   sizeOffset: 0.5
   background: {fileID: 1297353875}
-  cellsCount: 3
+  cellsCount: 5
   cellPrefab: {fileID: 3479389128108146745, guid: 4562e2e3f95d65646bf83c81b9ed8786, type: 3}
   borderThickness: 0.1
   borderSprite: {fileID: 8144033215839488079, guid: 41e5d11ba034ed8478bc0fe7693bccad, type: 3}

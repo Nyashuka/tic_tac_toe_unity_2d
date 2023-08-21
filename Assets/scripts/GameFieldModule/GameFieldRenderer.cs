@@ -1,8 +1,10 @@
-﻿using UnityEngine;
+﻿using System;
+using GameLogic;
+using UnityEngine;
 
 namespace GameFieldModule
 {
-    public class GameField : MonoBehaviour
+    public class GameFieldRenderer : MonoBehaviour
     {
         [SerializeField] private float size;
         [SerializeField] private float sizeOffset;
@@ -14,9 +16,14 @@ namespace GameFieldModule
         [SerializeField] private float borderThickness;
         [SerializeField] private SpriteRenderer borderSprite;
 
-        private Cell[] _cells;
+        [SerializeField] private Sprite crossSprite;
+        [SerializeField] private Sprite zeroSprite;
+
+        private Cell[,] _cells;
         private SpriteRenderer[] _verticalBorders;
         private SpriteRenderer[] _horizontalBorders;
+
+        public event Action<CellCoordinate> CellClicked;
 
         private void Start()
         {
@@ -34,7 +41,7 @@ namespace GameFieldModule
             float startX = gameFieldLocalBounds.min.x + cellSizeHalf + borderThickness;
             Vector2 currentPosition = new Vector2(startX, gameFieldLocalBounds.min.y * -1 - cellSizeHalf - borderThickness);
 
-            _cells = new Cell[cellsCount * cellsCount];
+            _cells = new Cell[cellsCount, cellsCount];
             
             int bordersCount = (cellsCount + 1) * cellsCount;
             _verticalBorders = new SpriteRenderer[bordersCount];
@@ -54,7 +61,7 @@ namespace GameFieldModule
                     if (i == cellsCount - 1)
                         RenderHorizontalBorder(currentIndex, currentPosition.x, currentPosition.y - cellSizeHalf - borderThickness / 2.0f, cellSize);
 
-                    RenderCell(currentIndex, currentPosition, cellSize);
+                    RenderCell(i, j, currentPosition, cellSize);
                     currentPosition.x += cellSize + borderThickness;
                 }
 
@@ -81,11 +88,22 @@ namespace GameFieldModule
             _horizontalBorders[index].size = new Vector2(cellSize, borderThickness);
         }
 
-        private void RenderCell(int index, Vector2 position, float cellSize)
+        private void RenderCell(int row, int col, Vector2 position, float cellSize)
         {
-            _cells[index] = Instantiate(cellPrefab, transform);
-            _cells[index].transform.localPosition = position;
-            _cells[index].SetSize(cellSize - sizeOffset, cellSize);
+            _cells[row, col] = Instantiate(cellPrefab, transform);
+            _cells[row, col].transform.localPosition = position;
+            _cells[row, col].Init(row, col,cellSize - sizeOffset, cellSize);
+            _cells[row, col].Clicked += OnCellClicked;
+        }
+
+        private void OnCellClicked(CellCoordinate coordinate)
+        {
+            CellClicked?.Invoke(coordinate);
+        }
+
+        public void RenderSymbolInto(int row, int column, PlayerType player)
+        {
+            _cells[row, column].SetSprite(player == PlayerType.Cross ? crossSprite : zeroSprite);
         }
     }
 }

@@ -17,16 +17,16 @@ namespace GameLogic.WinCheckerModule
             };
         }
 
-        public WinData FindWinner(PlayerType[,] gameField)
+        public WinnerData FindWinner(GameField gameField)
         {
             foreach (var checker in _checkers)
             {
-                WinData winData = checker.FindWinner(gameField);
-                if (winData.WinnerFound)
-                    return winData;
+                WinnerData winnerData = checker.FindWinner(gameField);
+                if (winnerData.WinnerFound)
+                    return winnerData;
             }
 
-            return new WinData(false);
+            return new WinnerData(false);
         }
     }
 }

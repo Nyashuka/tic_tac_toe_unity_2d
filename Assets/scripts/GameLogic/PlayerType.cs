@@ -3,7 +3,6 @@
     public enum PlayerType
     {
         Cross,
-        Zero,
-        Empty
+        Zero
     }
 }

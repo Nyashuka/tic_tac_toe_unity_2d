@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using GameLogic.WinCheckerModule;
 using UnityEngine;
 
@@ -6,27 +7,21 @@ namespace GameLogic
 {
     public class TicTacToe
     {
-        private readonly PlayerType[,] _gameField;
+        private readonly GameField _gameField;
         private readonly WinnerChecker _winnerChecker;
+        private readonly int _fieldSize;
+        
         private PlayerType _currentPlayer;
         private int _stepsCount;
         private bool _isGameOver;
 
         public PlayerType CurrentPlayer => _currentPlayer;
 
-        public event Action<WinData> GameOver;
+        public event Action<WinnerData> GameOver;
         
         public TicTacToe(int fieldSize, PlayerType firstPlayer)
         {
-            _gameField = new PlayerType[fieldSize, fieldSize];
-            for (int i = 0; i < fieldSize; i++)
-            {
-                for (int j = 0; j < fieldSize; j++)
-                {
-                    _gameField[i, j] = PlayerType.Empty;
-                }
-            }
-
+            _gameField = new GameField(fieldSize);
             _stepsCount = fieldSize * fieldSize;
             _currentPlayer = firstPlayer;
             _winnerChecker = new WinnerChecker();
@@ -36,17 +31,16 @@ namespace GameLogic
 
         public bool TryMakeStep(int row, int col)
         {
-            if (_isGameOver || _gameField[row, col] != PlayerType.Empty)
+            if (_isGameOver || !_gameField.IsEmpty(row, col))
                 return false;
-                
-            _gameField[row, col] = _currentPlayer == PlayerType.Cross ? PlayerType.Cross : PlayerType.Zero;
+
+            _gameField[row, col] = _currentPlayer;
             _stepsCount--;
             
-            WinData winData = _winnerChecker.FindWinner(_gameField);
-            if (winData.WinnerFound)
+            WinnerData winnerData = _winnerChecker.FindWinner(_gameField);
+            if (winnerData.WinnerFound || (winnerData.WinnerFound && _stepsCount == 0))
             {
-                Debug.Log(winData.Winner);
-                GameOver?.Invoke(winData);
+                GameOver?.Invoke(winnerData);
                 _isGameOver = true;
                 return true;
             }

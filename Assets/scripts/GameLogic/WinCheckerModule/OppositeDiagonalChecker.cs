@@ -5,25 +5,25 @@ namespace GameLogic.WinCheckerModule
 {
     public class OppositeDiagonalChecker : IChecker
     {
-        public WinData FindWinner(PlayerType[,] gameField)
+        public WinnerData FindWinner(GameField gameField)
         {
             Dictionary<PlayerType, int> counters = new Dictionary<PlayerType, int>() { { PlayerType.Cross, 0 }, { PlayerType.Zero, 0 } };
 
-            for (int i = 0; i < gameField.GetLength(0) && i < gameField.GetLength(1); i++)
+            for (int i = 0; i < gameField.FieldSize && i < gameField.FieldSize; i++)
             {
-                if (gameField[i, gameField.GetLength(1) - 1 - i] != PlayerType.Empty)
-                    counters[gameField[i, gameField.GetLength(1) - 1 - i]]++;
+                if (!gameField.IsEmpty(i,gameField.FieldSize - 1 - i))
+                    counters[gameField[i, gameField.FieldSize - 1 - i]]++;
             }
 
             foreach (var counterKey in counters.Keys.ToList())
             {
                 if (counters[counterKey] == 3)
-                    return new WinData(true, counterKey);
+                    return new WinnerData(true, counterKey);
 
                 counters[counterKey] = 0;
             }
 
-            return new WinData(false);
+            return new WinnerData(false);
         }
     }
 }

@@ -1,10 +1,15 @@
-﻿namespace Infrastructure
+﻿using UnityEngine;
+
+namespace Infrastructure
 {
-    public class Bootstrap
+    public class Bootstrap : MonoBehaviour
     {
-        private void Awake()
+        private Game _game;
+
+        private async void Awake()
         {
-            
+            _game = new Game();
+            await _game.Initialize();
         }
     }
 }

@@ -5,28 +5,28 @@ namespace GameLogic.WinCheckerModule
 {
     public class HorizontalChecker : IChecker
     {
-        public WinData FindWinner(PlayerType[,] gameField)
+        public WinnerData FindWinner(GameField gameField)
         {
-            Dictionary<PlayerType, int> counters = new Dictionary<PlayerType, int>() { { PlayerType.Cross, 0 }, { PlayerType.Zero, 0 } };
+            Dictionary<PlayerType, int> counters = new Dictionary<PlayerType, int>();
             
-            for (int i = 0; i < gameField.GetLength(0); i++)
+            for (int i = 0; i < gameField.FieldSize; i++)
             {
-                for (int j = 0; j < gameField.GetLength(1); j++)
+                counters[PlayerType.Cross] = 0;
+                counters[PlayerType.Zero] = 0;
+                for (int j = 0; j < gameField.FieldSize; j++)
                 {
-                    if(gameField[i, j] != PlayerType.Empty)
+                    if(!gameField.IsEmpty(i, j))
                         counters[gameField[i, j]]++;
                 }
 
-                foreach (var counterKey in counters.Keys.ToList())
+                foreach (var counterKey in counters.Keys)
                 {
                     if(counters[counterKey] == 3)
-                        return new WinData(true, counterKey);
-                    
-                    counters[counterKey] = 0;
+                        return new WinnerData(true, counterKey);
                 }
             }
 
-            return new WinData(false);
+            return new WinnerData(false);
         }
     }
 }

@@ -2,6 +2,6 @@
 {
     public interface IChecker
     {
-        WinData FindWinner(PlayerType[,] gameField);
+        WinnerData FindWinner(GameField gameField);
     }
 }

@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Threading.Tasks;
+using Infrastructure.GameStateMachineModule.States;
 
 namespace Infrastructure.GameStateMachineModule
 {
@@ -13,13 +14,15 @@ namespace Infrastructure.GameStateMachineModule
         {
             _states = new Dictionary<Type, IGameState>
             {
-                { typeof(BootstrapState), new BootstrapState() }
+                { typeof(BootstrapState), new BootstrapState() },
+                { typeof(MainMenuState), new MainMenuState() }
             };
         }
 
         public async Task Enter<T>() where T : IGameState
         {
-            await _currentState?.Exit()!;
+            if(_currentState != null)
+                await _currentState?.Exit()!;
 
             _currentState = _states[typeof(T)];
             await _currentState.Enter();

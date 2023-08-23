@@ -27,8 +27,7 @@ namespace GameLogic
             _winnerChecker = new WinnerChecker();
             _isGameOver = false;
         }
-
-
+        
         public bool TryMakeStep(int row, int col)
         {
             if (_isGameOver || !_gameField.IsEmpty(row, col))

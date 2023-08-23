@@ -1,5 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Infrastructure.GameStateMachineModule;
+using Infrastructure.GameStateMachineModule.States;
 
 namespace Infrastructure
 {
@@ -15,7 +16,7 @@ namespace Infrastructure
         public async Task Initialize()
         {
             await _stateMachine.Enter<BootstrapState>();
-            //await _stateMachine.Enter<MainMenuState>();
+            await _stateMachine.Enter<MainMenuState>();
         }
     }
 }

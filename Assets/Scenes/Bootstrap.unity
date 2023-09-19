@@ -227,7 +227,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 2
-  m_BackGroundColor: {r: 0.3882353, g: 0, b: 0.23137255, a: 0.11372549}
+  m_BackGroundColor: {r: 0.3207547, g: 0.249644, b: 0.29202312, a: 0.11372549}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0
@@ -282,6 +282,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 2588395419398752352, guid: ab221e536a8859048b9656827aa0460e, type: 3}
+      propertyPath: gameAssets.gameFieldViewConfigSo
+      value: 
+      objectReference: {fileID: 11400000, guid: f8a3980e5e8ea0b45872b8148df627c6, type: 2}
     - target: {fileID: 2588395419398752355, guid: ab221e536a8859048b9656827aa0460e, type: 3}
       propertyPath: m_RootOrder
       value: 2

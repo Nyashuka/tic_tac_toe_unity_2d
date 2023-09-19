@@ -1,4 +1,4 @@
-﻿namespace GameFieldModule
+﻿namespace GameFieldRendererModule
 {
     public struct CellCoordinate
     {

@@ -1,7 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using GameLogic.WinCheckerModule;
-using UnityEngine;
 
 namespace GameLogic
 {

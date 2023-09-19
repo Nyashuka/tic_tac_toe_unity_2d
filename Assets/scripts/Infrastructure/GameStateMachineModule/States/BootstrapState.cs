@@ -1,24 +1,24 @@
 ﻿using System.Threading.Tasks;
-using Better.Extensions.Runtime.AsyncExtension;
+using Infrastructure.EventBusModule;
+using Infrastructure.ServiceLocatorModule;
+using Services;
 using UnityEngine.SceneManagement;
 
 namespace Infrastructure.GameStateMachineModule.States
 {
     public class BootstrapState : IGameState
     {
-        private const string GameScene = "Game";
-        
         public async Task Enter()
         {
-            await SceneManager.LoadSceneAsync(GameScene, LoadSceneMode.Additive);
+            AssetsProvider assetsProvider = ServiceLocator.Instance.GetService<AssetsProvider>();
+            CustomSceneManager sceneManager = new CustomSceneManager();
+
+            await sceneManager.LoadScene(assetsProvider.ScenesAssets.GameScene, LoadSceneMode.Additive);
+            sceneManager.SetActiveScene(assetsProvider.ScenesAssets.GameScene.Name);
         }
+
 
         public async Task Exit()
-        {
-            
-        }
-
-        private void RegisterServices()
         {
             
         }

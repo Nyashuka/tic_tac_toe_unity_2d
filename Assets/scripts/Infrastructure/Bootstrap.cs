@@ -1,8 +1,6 @@
-﻿using Data.ScriptableObjects;
-using Infrastructure.ServiceLocatorModule;
+﻿using Infrastructure.ServiceLocatorModule;
 using Services;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Infrastructure
 {

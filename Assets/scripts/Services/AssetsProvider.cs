@@ -1,9 +1,6 @@
-﻿using Data;
-using Data.AssetsReferences;
-using Data.ScriptableObjects;
+﻿using Data.AssetsReferences;
 using Infrastructure.ServiceLocatorModule;
 using UnityEngine;
-using UnityEngine.Serialization;
 
 namespace Services
 {
@@ -11,7 +8,11 @@ namespace Services
     {
         [SerializeField] private UIAssets uiAssets;
         [SerializeField] private GameAssets gameAssets;
+        [SerializeField] private ScenesAssets sceneAssets;
 
         public UIAssets UIAssets => uiAssets;
+        public ScenesAssets ScenesAssets => sceneAssets;
+        public GameAssets GameAssets => gameAssets;
+
     }
 }

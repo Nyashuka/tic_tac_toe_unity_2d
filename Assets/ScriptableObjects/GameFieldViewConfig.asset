@@ -1,0 +1,25 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 355e88f6b0e04ae78b66540bb4f3d600, type: 3}
+  m_Name: GameFieldViewConfig
+  m_EditorClassIdentifier: 
+  gameFieldViewConfig:
+    size: 9
+    cellSizeOffset: 0
+    cellsCount: 3
+    borderThickness: 0.1
+    borderSprite: {fileID: 8144033215839488079, guid: 41e5d11ba034ed8478bc0fe7693bccad, type: 3}
+    crossSprite: {fileID: 21300000, guid: a2564d5d1af00694ba1b06d880a3cd1f, type: 3}
+    zeroSprite: {fileID: 21300000, guid: 22c6d3606aecae54abc225c23568453a, type: 3}
+    cellViewPrefab: {fileID: 3479389128108146745, guid: 4562e2e3f95d65646bf83c81b9ed8786, type: 3}
+    renderOutlines: 1
+    renderInnerLines: 1

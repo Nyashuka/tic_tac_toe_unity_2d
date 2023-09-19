@@ -60,3 +60,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   uiAssets:
     uiController: {fileID: 4779006059531570214, guid: a9c41a64f4c4b324581d1b46b91db240, type: 3}
+  gameAssets:
+    gameFieldRendererPrefab: {fileID: 5388009330001258737, guid: 28fc8adf3c4db734fbd7688b96b0cadb, type: 3}
+  sceneAssets:
+    gameScene:
+      name: Game
+      fullPath: Assets/Scenes/Game.unity
+      guid: 5353f554510f3f843b3ed396fb5b98ca
